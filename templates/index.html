@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TaskForge Web</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f0f8ff; color: #333; padding: 30px;">
+
+    <h1 style="text-align: center; color: #4B0082; font-size: 40px; text-shadow: 1px 1px #aaa;">
+        📋 TaskForge – Task List
+    </h1>
+
+ <form action="/add" method="POST" style="background: #e6f2ff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 600px; margin: auto;">
+    <input name="title" placeholder="Title" required style="padding: 10px; margin: 5px; width: 30%; border-radius: 6px; border: 1px solid #ccc;">
+    <input name="priority" placeholder="Priority (Low/Med/High)" required style="padding: 10px; margin: 5px; width: 30%; border-radius: 6px; border: 1px solid #ccc;">
+    <input name="due_date" placeholder="YYYY-MM-DD" required style="padding: 10px; margin: 5px; width: 30%; border-radius: 6px; border: 1px solid #ccc;">
+    <button type="submit" style="padding: 10px 20px; background: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer; transition: 0.3s;">
+        ➕ Add Task
+    </button>
+</form>
+    <hr style="margin: 40px 0; border-top: 2px dashed #ccc;">
+
+    {% for task in tasks %}
+        <div style="background: #fff0f5; padding: 20px; margin: 20px auto; border-radius: 10px; width: 80%; box-shadow: 0 3px 10px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+            <strong style="font-size: 20px; color: #8B0000;">{{ task.title }}</strong>
+            <div style="margin-top: 10px;">
+                <span style="color: #1e90ff;">Priority:</span> {{ task.priority }} |
+                <span style="color: #ff8c00;">Due:</span> {{ task.due_date }} |
+                <span style="color: {% if task.status == 'Completed' %}green{% else %}red{% endif %}; font-weight: bold;">
+                    {{ task.status }}
+                </span>
+            </div>
+            <div style="margin-top: 15px;">
+                <a href="/complete/{{ task.id }}" style="text-decoration: none; padding: 6px 12px; background: #28a745; color: white; border-radius: 5px; margin-right: 10px;">✅ Complete</a>
+                <a href="/delete/{{ task.id }}" style="text-decoration: none; padding: 6px 12px; background: #dc3545; color: white; border-radius: 5px;">🗑️ Delete</a>
+            </div>
+        </div>
+    {% endfor %}
+
+</body>
+</html>
