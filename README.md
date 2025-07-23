@@ -54,6 +54,7 @@ taskforge_web/
 ```bash
 git clone https://github.com/your-username/taskforge_web.git
 cd taskforge_web
+```
 
 🧑‍💻 Author
 Lakshmi Manikanta Kolapalli
